@@ -352,8 +352,8 @@ function compile_uboot() {
 
 	display_alert "Building u-boot deb" "${uboot_name}.deb"
 	fakeroot_dpkg_deb_build "$uboottempdir/${uboot_name}" "$uboottempdir/${uboot_name}.deb"
-	rm -rf "$uboottempdir/${uboot_name}"
-	[[ -n $atftempdir ]] && rm -rf "${atftempdir}"
+	rm -rf "${uboottempdir:?}/${uboot_name:?}"
+	[[ -n $atftempdir ]] && rm -rf "${atftempdir:?}"
 
 	[[ ! -f $uboottempdir/${uboot_name}.deb ]] && exit_with_error "Building u-boot package failed"
 
